@@ -1,0 +1,11 @@
+/* VALIDATION */
+.error-message {
+    color: red;
+    font-size: 13px;
+    line-height: 16px;
+}
+/* .steps-control {
+	position: absolute;
+	right: 30px;
+	bottom: 30px;
+} */
