@@ -34,7 +34,7 @@ const Toolbar = () => {
                     <li><a href="javascript:void(0)"><i className="ri-chat-1-line" /></a></li>
                   </ul>
                   <div className="logged-user  d-flex align-items-center">
-                    <img src="/poolsMagnic/images/Avatar.jpg" alt="user" />
+                    <img src="/assets/images/Avatar.jpg" alt="user" />
                     <div className="logged-user__name"><span>{profileData.name}</span> <i className="ri-arrow-down-s-line" /></div>
                     <div className="profile-dropdown">
                       <ul className="list-unstyled">

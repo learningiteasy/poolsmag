@@ -29,6 +29,7 @@
     "react-spinners": "^0.11.0",
     "react-toast-notifications": "^2.4.4",
     "redux-thunk": "^2.3.0",
+    "use-position": "0.0.8",
     "web-vitals": "^2.0.1"
   },
   "browserslist": {

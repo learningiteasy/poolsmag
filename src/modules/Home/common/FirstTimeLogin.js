@@ -2,11 +2,13 @@ import React from 'react'
 import { useToasts } from 'react-toast-notifications';
 import copy from 'copy-to-clipboard';
 import InviteModel from './InviteModel';
+import { useHistory } from 'react-router-dom';
 
 const FirstTimeLogin = () => {
     const { addToast } = useToasts();
+    const history = useHistory();
     const handleCopyClip = () => {
-        copy('http://167.172.209.57/poolsMagnic/signup', {
+        copy('http://poolsmagnic.com/signup', {
             debug: true,
         });
         addToast("copied!", {
@@ -19,6 +21,10 @@ const FirstTimeLogin = () => {
         <div className="container">
             <div className="row">
                 <div className="col-md-6 mx-auto">
+                     <div className="next-btn text-right">
+                     <a href="javascript:void(0)" onClick={() => history.push("/account")} className="btn btn-primary mb-5">Next</a>
+                     </div>
+                    
                     <div className="invite__box">
                         <h1 className="h2 font-weight-bold">Let's help you build your network!</h1>
                         <h5 className="mb-5">Invite an individual or a Business</h5>

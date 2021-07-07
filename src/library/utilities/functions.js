@@ -99,12 +99,13 @@ const clearSingleCookie = (name) => {
     document.cookie = name + "=" + "" + ";domain=" + window.location.hostname + ";path=/;" + expires;
 }
 export const addDefaultSrc = (ev) => {
-    ev.target.src = '/images/image-placeholder.jpg'
+    ev.target.src = 'assets/images/image-placeholder.jpg'
 }
 
 export const returnDefaultImage = (ev) => {
-    return '/images/image-placeholder.jpg'
+    return 'assets/images/image-placeholder.jpg'
 }
+
 export {
     is_page_exist_private, is_page_exist_protected, is_page_exist_app, replceMultiStringWithSIngle, addValidation,
     addDocumentTitle, getCookie, setCookie, clearCookies, clearSingleCookie

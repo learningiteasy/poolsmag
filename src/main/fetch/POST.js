@@ -1,4 +1,5 @@
 import { data } from 'jquery';
+import { getCookie } from '../../library/utilities/functions';
 
 let Symbol = require('es6-symbol');
 
@@ -7,10 +8,10 @@ const postApi = (endpoint, body, is_form_data) => {
     
     let config = {
         method: "POST",
-        headers: !!is_form_data ? {} : {
+        headers: !!is_form_data ? { 'Authorization': 'Bearer ' + getCookie('token_id') } : {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'X-CSRFToken': ''
+            'Authorization': 'Bearer ' + getCookie('token_id')
         },
         body: !!is_form_data ? body : JSON.stringify(body)
     };
@@ -34,7 +35,7 @@ export default store => next => action => {
                 if (response.status === 200) {
                     return next({ response, type: successType })
                 }
-                else if (response.status === 400 || response.status === 401 || response.status === 403) {
+                else if (response.status === 401) {
                     return next({ response, type: errorType })
                 }
                 else {

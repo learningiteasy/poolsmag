@@ -5,7 +5,7 @@ import { useToasts } from 'react-toast-notifications';
 import ClipLoader from "react-spinners/ClipLoader";
 import { loginDataApi } from '../../library/api/LoginApiService';
 import { Input } from '../../library/common/components'
-import { addDocumentTitle, addValidation, setCookie } from '../../library/utilities/functions';
+import { addDocumentTitle, addValidation, clearCookies, replceMultiStringWithSIngle, setCookie } from '../../library/utilities/functions';
 import { changeLoginInput, clearLoginApiResponse, clearLoginInput } from './LoginActions';
 import { loginFormValidation } from './validations';
 import { Link, useHistory } from 'react-router-dom';
@@ -15,7 +15,7 @@ const override = css`
     width: 40px;
     height: 40px;
     position: absolute;
-    top: 74%;
+    top: 5px;
     right: 47%;
 `;
 
@@ -28,30 +28,33 @@ const Login = () => {
   const passwordElValidation = useRef(null);
   const loginState = useSelector(state => state.LoginReducer)
   const { loginInput: { name, password } } = loginState
-  const { loginApiResponse: { loginApiLoading, loginDataResponse, loginApiSuccess ,loginApiStatus, loginMessage } } = loginState
+  const { loginApiResponse: { loginApiLoading, loginDataResponse, loginApiSuccess, loginApiStatus, loginMessage } } = loginState
   console.log(loginState, "loginState");
   useEffect(() => {
     if (!!loginApiSuccess) {
-        addToast(loginMessage, {
-            appearance: 'success',
-            autoDismiss: true,
-        });
-        let tokenSplit =loginDataResponse.token.split("|")
-        setCookie("token_id" , tokenSplit[1],1);
-        setCookie("profile_data" , JSON.stringify(loginDataResponse),1);
-        dispatch(changeIsAuth({is_auth: true}))
-          history.push("/home")
+      addToast(loginMessage, {
+        appearance: 'success',
+        autoDismiss: true,
+      });
+      let tokenSplit = loginDataResponse.token.split("|")
+      setCookie("token_id", tokenSplit[1], 1);
+      setCookie("profile_data", JSON.stringify(loginDataResponse), 1);
+      console.log(loginDataResponse, "loginDataResponse..")
+      setCookie("individual", loginDataResponse.is_individual, 1);
+      dispatch(changeIsAuth({ is_auth: true }))
+      history.push("/home")
     }
 
     if (!loginApiSuccess && !!loginApiStatus) {
-        addToast(loginMessage, {
-            appearance: 'error',
-            autoDismiss: true,
-        });
-        dispatch(clearLoginApiResponse());
+      addToast(loginMessage, {
+        appearance: 'error',
+        autoDismiss: true,
+      });
+      clearCookies();
+      dispatch(clearLoginApiResponse());
     }
 
-}, [loginApiSuccess])
+  }, [loginApiSuccess])
   useEffect(() => {
     addDocumentTitle("Login")
     nameEl.current.focus();
@@ -96,7 +99,7 @@ const Login = () => {
           <Input type="password" name="password" class="form-control" onChange={handleChange} value={password} placeholder="Password" />
           <p style={{ display: "none" }} ref={passwordElValidation} className="error-message">Please enter Password </p>
         </div>
-        <div className="form-group text-center mt-4">
+        <div className="form-group text-center mt-4 position-relative">
           <Input type="submit" name="submit" class="btn btn-primary w-75" disabled={!!loginApiLoading ? true : false} />
           <ClipLoader color={"#fff"} loading={!!loginApiLoading ? true : false} css={override} />
         </div>

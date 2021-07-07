@@ -103,7 +103,7 @@ const BusinesSignUp = () => {
             <div className="form-group">
                 <p className="mb-0">By signing up, you agree to the <a href="javascript:void(0)" className="link-color">Terms of Service</a> and <a href="javascript:void(0)" className="link-color">Privacy Policy</a>, including Cookie Use. Others will be able to find you by email or phone number when provided.</p>
             </div>
-            <div className="form-group mb-0">
+            <div className="form-group">
                 <div className="login-option d-flex flex-column mt-4">
                     <a href="javascript:void(0)" onClick={handleSubmit} className={!!signupApiLoading ?"btn btn-secondary disabled":"btn btn-secondary" }>Sign Up</a>
                     <ClipLoader color={"#fff"} loading={!!signupApiLoading ? true : false} css={override} />

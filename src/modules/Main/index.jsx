@@ -9,7 +9,7 @@ const Main = () => {
   return (
     <div className="login-option d-flex flex-column mt-4">
       <Link to="/login" className="btn btn-primary">Log In</Link>
-      <Link to="/signup" className="btn btn-secondary mt-3">Sign Up</Link>
+      <Link to="/signup" className="btn btn-primary mt-3">Sign Up</Link>
     </div>
 
   )

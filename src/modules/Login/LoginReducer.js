@@ -11,7 +11,8 @@ const initialState = {
         loginApiStatus: "",
         loginMessage: "",
         loginDataResponse: "",
-        loginApiSuccess: ""
+        loginApiSuccess: "",
+        is_individual: true
     }
 }
 
@@ -46,7 +47,8 @@ export const LoginReducer = (state = initialState, action) => {
                 loginApiStatus: 200,
                 loginMessage: message,
                 loginDataResponse: data,
-                loginApiSuccess: success
+                loginApiSuccess: success,
+                is_individual: success ? data.is_individual : true
             }
             return {
                 ...state,
@@ -55,14 +57,13 @@ export const LoginReducer = (state = initialState, action) => {
                 }
             }
         case LOGIN_DATA_FAILURE:
-            console.log(action, "action...");
-            // const loginApiError = { response: { data } } = action;
             let loginStateFailure = {
                 loginApiLoading: false,
-                loginApiStatus: action.response.status,
-                loginMessage: action.response.message,
+                loginApiStatus: action.response.data.status,
+                loginMessage: action.response.data.message,
                 loginDataResponse: "",
-                loginApiSuccess: action.response.success
+                loginApiSuccess: action.response.data.success,
+                is_individual: true
             }
             return {
                 ...state,
@@ -75,7 +76,8 @@ export const LoginReducer = (state = initialState, action) => {
                 loginApiStatus: "",
                 loginMessage: "",
                 loginDataResponse: "",
-                loginApiSuccess: ""
+                loginApiSuccess: "",
+                is_individual: true
             }
             return {
                 ...state,
