@@ -1,5 +1,5 @@
 # Project Name & Description
-PoolsMagnic
+PoolsMagnic <br>
 PoolsMagnic built with React and React-Redux and hooks.
 # Project Status
 This project is currently in development mode.
